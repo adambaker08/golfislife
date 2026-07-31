@@ -1,0 +1,33 @@
+name: Morning Brief
+
+on:
+  schedule:
+    # 07:00 UK time. GitHub Actions cron is UTC; adjust if BST/GMT drifts matter to you.
+    - cron: "0 7 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate brief
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-brief.mjs
+
+      - name: Commit brief
+        run: |
+          git config user.name "golfislife-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add scripts/briefs
+          git diff --staged --quiet || git commit -m "Add brief for $(date -u +%F)"
+          git push

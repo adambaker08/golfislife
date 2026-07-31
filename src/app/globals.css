@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #faf8f3;
+  color: #1a1a1a;
+}
+
+.prose-golf h2 {
+  @apply text-2xl font-bold mt-8 mb-3 text-fairwayDark;
+}
+.prose-golf h3 {
+  @apply text-xl font-semibold mt-6 mb-2 text-fairwayDark;
+}
+.prose-golf p {
+  @apply mb-4 leading-relaxed text-gray-800;
+}
+.prose-golf ul {
+  @apply list-disc list-inside mb-4 space-y-1;
+}
+.prose-golf a {
+  @apply text-fairway underline hover:text-fairwayDark;
+}
