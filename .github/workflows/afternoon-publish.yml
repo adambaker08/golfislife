@@ -28,6 +28,6 @@ jobs:
         run: |
           git config user.name "golfislife-bot"
           git config user.email "bot@users.noreply.github.com"
-          mkdir -p needsreview
+          mkdir -p needs-review
           touch needs-review/.gitkeep
-          git add src/content/posts need-review
+          git add src/content/posts needs-review
