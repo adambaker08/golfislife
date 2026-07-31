@@ -29,12 +29,27 @@ export default function RootLayout({ children }) {
 
         <footer className="bg-fairwayDark text-sand/80 text-sm">
           <div className="max-w-4xl mx-auto px-4 py-6">
-            <p>
+            <p className="mb-3">
               © {new Date().getFullYear()} GolfisLife. Some links on this
               site are affiliate links — we may earn a commission at no
               extra cost to you. We only recommend gear, courses, and
-              travel we&apos;d genuinely play or use ourselves.
+              travel we&apos;d genuinely play or use ourselves. As an
+              Amazon Associate, GolfisLife earns from qualifying purchases.
             </p>
+            <nav className="flex gap-4 text-xs">
+              <a href="/privacy-policy" className="hover:text-sand underline">
+                Privacy Policy
+              </a>
+              <a
+                href="/affiliate-disclosure"
+                className="hover:text-sand underline"
+              >
+                Affiliate Disclosure
+              </a>
+              <a href="/about" className="hover:text-sand underline">
+                About
+              </a>
+            </nav>
           </div>
         </footer>
       </body>
