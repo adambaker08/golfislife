@@ -4,8 +4,10 @@ export const metadata = {
   title: "GolfisLife — Gear, Travel & Courses",
   description:
     "Honest reviews and guides on golf gear, golf travel, and courses worth playing.",
+  verification: {
+    google: "<meta name="google-site-verification" content="k0LumybYPyLfHoiP1mDJUtijkmb09sxaF8EzMTWmoAo" />"
+  },
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en-GB">
