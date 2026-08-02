@@ -40,9 +40,27 @@ ${APPROVED_PARTNERS}
 Brief:
 ${JSON.stringify(brief, null, 2)}
 
-Write the full blog post now. Output ONLY the raw Markdown file
-content, starting with YAML frontmatter (title, description, date,
-category), then the body. No commentary outside the file content.`,
+Write the full blog post now. Naturally work the brief's
+"target_phrase" into the title, an early paragraph, and at least one
+subheading — but keep it reading naturally, never forced or
+repeated like keyword-stuffing.
+
+The file MUST start with EXACTLY this frontmatter format — a line
+containing only ---, then the four fields, then another line
+containing only ---, with nothing before the first --- and nothing
+else on the --- lines themselves:
+
+---
+title: "Post Title Here"
+description: "One sentence description here."
+date: "${new Date().toISOString().slice(0, 10)}"
+category: "${brief.category}"
+---
+
+Use exactly today's date shown above, not any other date. After the
+closing --- line, write the body in Markdown. Output ONLY the raw
+file content in this exact structure — no commentary before or after,
+nothing before the opening ---.`,
       },
     ],
   });
@@ -77,7 +95,7 @@ ${draftMarkdown}`,
 
   const textBlocks = response.content.filter((b) => b.type === "text");
   const raw = textBlocks.map((b) => b.text).join("\n").trim();
-  const cleaned = raw.replace(/```json|```/g, "").trim();
+  const cleaned = raw.replace(/json|/g, "").trim();
   try {
     return JSON.parse(cleaned);
   } catch {
@@ -87,33 +105,48 @@ ${draftMarkdown}`,
 
 async function main() {
   const today = new Date().toISOString().slice(0, 10);
-  const briefPath = path.join(process.cwd(), "scripts", "briefs", `${today}.json`);
+  const briefPath = path.join(process.cwd(), "scripts", "briefs", ${today}.json);
 
   if (!fs.existsSync(briefPath)) {
-    console.error(`No brief found for ${today} at ${briefPath}. Run generate-brief first.`);
+    console.error(No brief found for ${today} at ${briefPath}. Run generate-brief first.);
     process.exit(1);
   }
 
   const brief = JSON.parse(fs.readFileSync(briefPath, "utf-8"));
 
   const draft = await draftPost(brief);
+
+  // Hard structural check: frontmatter must start at the very first
+  // character with --- and have a matching closing --- shortly after.
+  // This catches malformed output regardless of what the AI self-check says.
+  const frontmatterOk = /^---\r?\n[\s\S]*?\r?\n---\r?\n/.test(draft);
+  if (!frontmatterOk) {
+    const reviewDir = path.join(process.cwd(), "needs-review");
+    fs.mkdirSync(reviewDir, { recursive: true });
+    const slug = ${slugify(brief.working_title || "post")}-${today};
+    const note = <!--\nSTRUCTURAL CHECK FAILED — not published.\nIssue: frontmatter did not start with --- on the first line, or\nhad no closing --- fence. Fix manually before moving to\nsrc/content/posts/.\n-->\n\n${draft};
+    fs.writeFileSync(path.join(reviewDir, ${slug}.md), note);
+    console.log(Held for review (bad frontmatter): needs-review/${slug}.md);
+    return;
+  }
+
   const check = await selfCheck(draft, brief);
 
-  const slug = `${slugify(brief.working_title || "post")}-${today}`;
+  const slug = ${slugify(brief.working_title || "post")}-${today};
 
   if (check.pass) {
     const outDir = path.join(process.cwd(), "src/content/posts");
     fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, `${slug}.md`), draft);
-    console.log(`Published: src/content/posts/${slug}.md`);
+    fs.writeFileSync(path.join(outDir, ${slug}.md), draft);
+    console.log(Published: src/content/posts/${slug}.md);
   } else {
     const reviewDir = path.join(process.cwd(), "needs-review");
     fs.mkdirSync(reviewDir, { recursive: true });
     const note = `<!--\nSELF-CHECK FAILED — not published.\nIssues:\n${check.issues
-      .map((i) => `- ${i}`)
+      .map((i) => - ${i})
       .join("\n")}\n-->\n\n${draft}`;
-    fs.writeFileSync(path.join(reviewDir, `${slug}.md`), note);
-    console.log(`Held for review: needs-review/${slug}.md`);
+    fs.writeFileSync(path.join(reviewDir, ${slug}.md), note);
+    console.log(Held for review: needs-review/${slug}.md);
     console.log("Issues:", check.issues);
   }
 }
