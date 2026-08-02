@@ -2,8 +2,8 @@ name: Afternoon Draft & Publish
 
 on:
   schedule:
-    # 15:00 UK time (UTC cron — adjust for BST/GMT if it matters to you).
-    - cron: "0 15 * * *"
+    # 09:00 UK time (UTC cron — adjust for BST/GMT if it matters to you).
+    - cron: "0 8 * * *"
   workflow_dispatch: {}
 
 jobs:
