@@ -1,7 +1,7 @@
 ---
 title: "Scotland's Golf Coast: A Practical Guide to Playing East Lothian"
 description: "East Lothian packs more world-class links into a single coastline than anywhere else in Scotland. Here's a realistic planning guide for club golfers — what to prioritise, what to expect, and how to make the most of a trip."
-date: 2025-01-30
+date: "2026-08-02"
 category: Courses
 ---
 
