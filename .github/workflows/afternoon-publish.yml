@@ -30,4 +30,15 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           mkdir -p needs-review
           touch needs-review/.gitkeep
-          git add src/content/posts needs-review
+          echo "--- git status before add ---"
+          git status
+          git add -A src/content/posts needs-review
+          echo "--- git status after add ---"
+          git status
+          if git diff --staged --quiet; then
+            echo "Nothing staged — no new file was written this run."
+          else
+            git commit -m "Post for $(date -u +%F)"
+            git push origin HEAD:main
+            echo "Committed and pushed."
+          fi
