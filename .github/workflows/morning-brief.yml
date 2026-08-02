@@ -3,7 +3,7 @@ name: Morning Brief
 on:
   schedule:
     # 07:00 UK time. GitHub Actions cron is UTC; adjust if BST/GMT drifts matter to you.
-    - cron: "0 7 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch: {}
 
 jobs:
