@@ -39,7 +39,7 @@ export function getAllPosts() {
 }
 
 export function getPostBySlug(slug) {
-  const filePath = path.join(POSTS_DIR, ${slug}.md);
+  const filePath = path.join(POSTS_DIR, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");
