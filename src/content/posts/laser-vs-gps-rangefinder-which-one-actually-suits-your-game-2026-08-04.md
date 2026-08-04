@@ -5,10 +5,6 @@ date: "2026-08-04"
 category: "Gear"
 ---
 
-> **Draft note for site owner:** All product mentions in this post are informational only. No affiliate links have been inserted — none of the brands listed appear in approved-partners.md at the time of writing. Please add affiliate links manually once relevant partnerships are in place.
-
----
-
 The laser vs GPS rangefinder debate has been running for years, and most articles resolve it the same way: declare one a winner, list ten products, and move on. That's not especially useful if you're a regular club golfer trying to work out which type of device actually fits *your* game, *your* course, and *your* handicap.
 
 The honest answer is that neither laser nor GPS is universally better. What matters is which trade-offs you're willing to live with.
