@@ -95,7 +95,7 @@ ${draftMarkdown}`,
 
   const textBlocks = response.content.filter((b) => b.type === "text");
   const raw = textBlocks.map((b) => b.text).join("\n").trim();
-  const cleaned = raw.replace(/json|/g, "").trim();
+  const cleaned = raw.replace(/```json|```/g, "").trim();
   try {
     return JSON.parse(cleaned);
   } catch {
@@ -116,17 +116,21 @@ async function main() {
 
   const draft = await draftPost(brief);
 
-  // Hard structural check: frontmatter must start at the very first
-  // character with --- and have a matching closing --- shortly after.
-  // This catches malformed output regardless of what the AI self-check says.
   const frontmatterOk = /^---\r?\n[\s\S]*?\r?\n---\r?\n/.test(draft);
   if (!frontmatterOk) {
     const reviewDir = path.join(process.cwd(), "needs-review");
     fs.mkdirSync(reviewDir, { recursive: true });
     const slug = `${slugify(brief.working_title || "post")}-${today}`;
-    const note = <!--\nSTRUCTURAL CHECK FAILED — not published.\nIssue: frontmatter did not start with --- on the first line, or\nhad no closing --- fence. Fix manually before moving to\nsrc/content/posts/.\n-->\n\n${draft};
-    fs.writeFileSync(path.join(reviewDir, ${slug}.md), note);
-    console.log(Held for review (bad frontmatter): needs-review/${slug}.md);
+    const noteLines = [
+      "STRUCTURAL CHECK FAILED - not published.",
+      "Issue: frontmatter did not start with --- on the first line, or",
+      "had no closing --- fence. Fix manually before moving to",
+      "src/content/posts/.",
+      "",
+      draft,
+    ];
+    fs.writeFileSync(path.join(reviewDir, `${slug}.md`), noteLines.join("\n"));
+    console.log(`Held for review (bad frontmatter): needs-review/${slug}.md`);
     return;
   }
 
@@ -137,16 +141,21 @@ async function main() {
   if (check.pass) {
     const outDir = path.join(process.cwd(), "src/content/posts");
     fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, ${slug}.md), draft);
-    console.log(Published: src/content/posts/${slug}.md);
+    fs.writeFileSync(path.join(outDir, `${slug}.md`), draft);
+    console.log(`Published: src/content/posts/${slug}.md`);
   } else {
     const reviewDir = path.join(process.cwd(), "needs-review");
     fs.mkdirSync(reviewDir, { recursive: true });
-    const note = `<!--\nSELF-CHECK FAILED — not published.\nIssues:\n${check.issues
-      .map((i) => - ${i})
-      .join("\n")}\n-->\n\n${draft}`;
-    fs.writeFileSync(path.join(reviewDir, ${slug}.md), note);
-    console.log(Held for review: needs-review/${slug}.md);
+    const issueLines = check.issues.map((i) => `- ${i}`).join("\n");
+    const noteLines = [
+      "SELF-CHECK FAILED - not published.",
+      "Issues:",
+      issueLines,
+      "",
+      draft,
+    ];
+    fs.writeFileSync(path.join(reviewDir, `${slug}.md`), noteLines.join("\n"));
+    console.log(`Held for review: needs-review/${slug}.md`);
     console.log("Issues:", check.issues);
   }
 }
