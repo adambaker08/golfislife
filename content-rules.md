@@ -29,13 +29,16 @@ drafting steps. Do not relax these for any single post.
   (b) presented with no affiliate link at all, clearly as an
   informational mention.
 - Never insert an affiliate link for a product not in the approved
-  list, even if it fits the topic well. Flag it in the post's draft
-  notes instead so a human can add it later.
+  list, even if it fits the topic well. Simply mention the product
+  informationally with no link — do not add any note, disclaimer, or
+  comment about this to the reader anywhere in the post body. The post
+  should read as a normal finished article, not as a work in progress.
 - Disclose affiliate relationships in line with UK ASA/CMA rules: any
   post containing an affiliate link must carry a clear disclosure
   (the site-wide footer disclosure is not sufficient on its own for
   posts with in-content affiliate links — add a one-line disclosure
-  near the top of those posts).
+  near the top of those posts). Do not add a disclosure line to posts
+  that contain no affiliate links at all.
 
 ## Topics ruled out entirely
 - Gambling, betting odds, or "golf betting tips" content.
