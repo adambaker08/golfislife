@@ -123,7 +123,7 @@ async function main() {
   if (!frontmatterOk) {
     const reviewDir = path.join(process.cwd(), "needs-review");
     fs.mkdirSync(reviewDir, { recursive: true });
-    const slug = ${slugify(brief.working_title || "post")}-${today};
+    const slug = `${slugify(brief.working_title || "post")}-${today}`;
     const note = <!--\nSTRUCTURAL CHECK FAILED — not published.\nIssue: frontmatter did not start with --- on the first line, or\nhad no closing --- fence. Fix manually before moving to\nsrc/content/posts/.\n-->\n\n${draft};
     fs.writeFileSync(path.join(reviewDir, ${slug}.md), note);
     console.log(Held for review (bad frontmatter): needs-review/${slug}.md);
@@ -132,7 +132,7 @@ async function main() {
 
   const check = await selfCheck(draft, brief);
 
-  const slug = ${slugify(brief.working_title || "post")}-${today};
+  const slug = `${slugify(brief.working_title || "post")}-${today}`;
 
   if (check.pass) {
     const outDir = path.join(process.cwd(), "src/content/posts");
