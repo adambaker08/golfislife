@@ -108,7 +108,7 @@ async function main() {
   const briefPath = path.join(process.cwd(), "scripts", "briefs", `${today}.json`);
 
   if (!fs.existsSync(briefPath)) {
-    console.error(No brief found for ${today} at ${briefPath}. Run generate-brief first.);
+    console.error(`No brief found for ${today} at ${briefPath}. Run generate-brief first.`);
     process.exit(1);
   }
 
