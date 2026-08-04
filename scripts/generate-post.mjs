@@ -105,7 +105,7 @@ ${draftMarkdown}`,
 
 async function main() {
   const today = new Date().toISOString().slice(0, 10);
-  const briefPath = path.join(process.cwd(), "scripts", "briefs", ${today}.json);
+  const briefPath = path.join(process.cwd(), "scripts", "briefs", `${today}.json`);
 
   if (!fs.existsSync(briefPath)) {
     console.error(No brief found for ${today} at ${briefPath}. Run generate-brief first.);
