@@ -11,7 +11,7 @@ export default function HomePage() {
         </h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto">
           Reviews, guides, and recommendations from someone who actually
-          plays. New posts twice a day covering the clubs worth buying, the
+          plays. New posts daily covering the clubs worth buying, the
           courses worth the green fee, and the trips worth planning.
         </p>
       </section>
