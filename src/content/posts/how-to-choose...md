@@ -1,3 +1,4 @@
+---
 "How to Choose a Golf Waterproof Jacket That Won't Wreck Your Swing"
 description: "Cut through the spec-sheet noise and find out what actually matters when choosing a golf waterproof jacket for UK conditions — from hydrostatic head ratings to swing-friendly fit."
 date: "2026-08-05"
