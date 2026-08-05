@@ -1,8 +1,3 @@
-SELF-CHECK FAILED - not published.
-Issues:
-- The post body contains the sentence 'None of these carry affiliate links here — all informational mentions only.' This is a visible note to the reader about the affiliate/link status of the mentioned products, which violates the rule that no such comment or disclaimer should appear in the post body — the post must read as a normal finished article, not a work in progress.
-
----
 title: "How to Choose a Golf Waterproof Jacket That Won't Wreck Your Swing"
 description: "Cut through the spec-sheet noise and find out what actually matters when choosing a golf waterproof jacket for UK conditions — from hydrostatic head ratings to swing-friendly fit."
 date: "2026-08-05"
