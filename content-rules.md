@@ -6,12 +6,15 @@ drafting steps. Do not relax these for any single post.
 
 ## Voice & audience
 - UK English spelling and idiom throughout (favour, colour, -ise not -ize).
-- Written for a golfer who plays regularly but isn't a scratch pro —
+- Written for a golfer who plays regularly but isn't a scratch pro,
   practical, specific, a bit opinionated. Not corporate, not breathless.
 - No invented personal anecdotes ("I played this course last summer")
   unless the anecdote is explicitly supplied in the brief by a human.
   The site owner has not played every course or used every product it
-  covers — do not imply first-hand experience that wasn't provided.
+  covers, so do not imply first-hand experience that wasn't provided.
+- Never use an em dash (—) anywhere in a post, including the title or
+  description. Use a comma, a full stop and new sentence, or
+  parentheses instead.
 
 ## Factual honesty
 - Never fabricate a product spec, price, course record, or review quote.
